@@ -1,0 +1,37 @@
+{
+  "name": "one-two-step-function",
+  "version": "1.0.0",
+  "description": "A few examples of step functions",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ChacDLT/one-two-step-function.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ChacDLT/one-two-step-function/issues"
+  },
+  "homepage": "https://github.com/ChacDLT/one-two-step-function#readme",
+  "devDependencies": {
+    "babel-eslint": "^10.1.0",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-fivetalent": "^0.0.25",
+    "eslint-config-prettier": "^6.15.0",
+    "eslint-plugin-html": "^6.2.0",
+    "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-prettier": "^3.4.1",
+    "eslint-plugin-react": "^7.27.1",
+    "eslint-plugin-react-hooks": "^2.5.1",
+    "prettier": "^1.19.1"
+  },
+  "dependencies": {
+    "serverless-step-functions": "^3.3.1"
+  }
+}

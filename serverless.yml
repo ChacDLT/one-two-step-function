@@ -1,0 +1,22 @@
+service:
+  name: one-two-step-function
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  region: us-west-2
+  stage: ${opt:stage, self:custom.default_stage}
+  stackName: ${self:service.name}-${opt:stage, self:custom.default_stage}
+  versionFunctions: false
+
+functions:
+  - ${file(resources/functions.yml)}
+
+stepFunctions:
+  stateMachines: ${file(resources/stateMachines.yml)}
+
+resources:
+  - ${file(resources/resources.yml)}
+
+plugins:
+  - serverless-step-functions

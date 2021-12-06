@@ -1,0 +1,20 @@
+createInvoice:
+  handler: src/functions/createInvoice.handler
+  timeout: 60
+
+# createOrderRecord:
+#   handler: src/functions/stepFunctions/createOrderRecord.handler
+#   timeout: 10
+
+# notifyStore:
+#   handler: src/functions/stepFunctions/notifyStore.handler
+#   timeout: 10
+
+# pendingInput:
+#   handler: src/functions/stepFunctions/pendingInput.handler
+
+# cancelSFCC:
+#   handler: src/functions/stepFunctions/cancelSFCC.handler
+
+# updateOrderRecordCancel:
+#   handler: src/functions/stepFunctions/updateOrderRecordCancel.handler

@@ -1,0 +1,23 @@
+Resources:
+  StateMachineRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: ${self:provider.stage}-StateMachineRole
+      AssumeRolePolicyDocument:
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - states.amazonaws.com
+            Action:
+              - sts:AssumeRole
+      Policies:
+        - PolicyName: ${self:provider.stage}-Policy
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action:
+                  - lambda:InvokeFunction
+                Resource:
+                  - !Sub arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:${self:service.name}-${self:provider.stage}-*
