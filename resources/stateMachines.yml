@@ -8,7 +8,23 @@ firstStateMachine:
       createInvoice:
         Type: Task
         Resource: !GetAtt createInvoice.Arn
+        Next: pendingPick
+      pendingPick:
+        Type: Task
+        Resource: arn:${AWS::Partition}:states:::lambda:invoke.waitForTaskToken
+        Parameters:
+          FunctionName: !GetAtt pendingInput.Arn
+          Payload:
+          - taskToken.$: $$.Task.Token
+          - order.$: "$"
+        Next: emailCustomer
+      emailCustomer:
+        Type: Task
+        Resource: !GetAtt emailCustomer.Arn
         End: true
+
+        
+      
 
 secondStateMachine:
   name: second${self:provider.stage}StateMachine

@@ -45,7 +45,7 @@ const init = async () => {
 
   const dynamodb = new AWS.DynamoDB.DocumentClient();
   const stepfunctions = new AWS.StepFunctions();
-  const tableName = `orders-${env}-table`;
+  const tableName = 'order-dev-table';
 
   const { Item: order } = await dynamodb
     .get({
@@ -57,7 +57,7 @@ const init = async () => {
     .promise();
 
   const params = {
-    output: JSON.stringify({ message, order }),
+    output: JSON.stringify(order),
     taskToken: order.taskToken,
   };
 

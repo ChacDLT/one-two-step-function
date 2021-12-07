@@ -24,9 +24,7 @@ const getOrder = async id => {
   }
 };
 
-const createOrder = async orderInfo => {
-  orderInfo.updatedAt = new Date().toISOString();
-
+const saveOrder = async orderInfo => {
   try {
     await dynamodb
       .put({
@@ -43,4 +41,4 @@ const createOrder = async orderInfo => {
   }
 };
 
-module.exports = { getOrder, createOrder };
+module.exports = { getOrder, saveOrder };

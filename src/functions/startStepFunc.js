@@ -19,8 +19,6 @@ const startStepFunction = async (order, stepFunctionArn) => {
     name: order.executionName,
   };
 
-  console.log('params', params);
-
   try {
     await stepfunctions.startExecution(params).promise();
   } catch (error) {
@@ -32,6 +30,8 @@ const generateOrder = () => {
   const order = {};
 
   const id = uuidv4();
+
+  console.log('id: ', id);
 
   order.id = id;
   order.executionName = id;
