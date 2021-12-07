@@ -1,19 +1,15 @@
-
+#first
 startStepFunc:
   handler: src/functions/startStepFunc.handler
-
 createInvoice:
   handler: src/stepFunctions/createInvoice.handler
-
 pendingInput:
   handler: src/stepFunctions/pendingInput.handler
-
 emailCustomer:
   handler: src/stepFunctions/emailCustomer.handler
 
 
-##
-
+## second
 createInvoiceTwo:
   handler: src/stepFunctionsTwo/createInvoiceTwo.handler
 createOrderRecordTwo:
@@ -23,21 +19,15 @@ notifyStoreTwo:
 emailCustomerTwo:
   handler: src/stepFunctionsTwo/emailCustomerTwo.handler
 
+## third
+createInvoiceThree:
+  handler: src/stepFunctionsThree/createInvoiceThree.handler
+createOrderRecordThree:
+  handler: src/stepFunctionsThree/createOrderRecordThree.handler
+notifyStoreThree:
+  handler: src/stepFunctionsThree/notifyStoreThree.handler
+emailCustomerThree:
+  handler: src/stepFunctionsThree/emailCustomerThree.handler
+sendToErrorQueue:
+  handler: src/stepFunctionsThree/sendToErrorQueue.handler
 
-
-# createOrderRecord:
-#   handler: src/functions/stepFunctions/createOrderRecord.handler
-#   timeout: 10
-
-# notifyStore:
-#   handler: src/functions/stepFunctions/notifyStore.handler
-#   timeout: 10
-
-# pendingInput:
-#   handler: src/functions/stepFunctions/pendingInput.handler
-
-# cancelSFCC:
-#   handler: src/functions/stepFunctions/cancelSFCC.handler
-
-# updateOrderRecordCancel:
-#   handler: src/functions/stepFunctions/updateOrderRecordCancel.handler

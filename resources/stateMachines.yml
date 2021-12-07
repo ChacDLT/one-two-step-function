@@ -23,14 +23,11 @@ firstStateMachine:
         Resource: !GetAtt emailCustomer.Arn
         End: true
 
-        
-      
-
 secondStateMachine:
   name: second${self:provider.stage}StateMachine
   role: !GetAtt StateMachineRole.Arn
   definition:
-    Comment: "First iteration"
+    Comment: "Second iteration"
     StartAt: createInvoice
     States:
       createInvoice:
@@ -58,3 +55,58 @@ secondStateMachine:
         Type: Task
         Resource: !GetAtt emailCustomerTwo.Arn
         End: true
+
+ThirdStateMachine:
+  name: third${self:provider.stage}StateMachine
+  role: !GetAtt StateMachineRole.Arn
+  definition:
+    Comment: "Third iteration"
+    StartAt: createInvoice
+    States:
+      createInvoice:
+        Type: Task
+        Resource: !GetAtt createInvoiceThree.Arn
+        Next: createOrderRecord
+        Retry: ${self:custom.retryStep}
+        Catch: ${self:custom.catchStep}
+      createOrderRecord:
+        Type: Task
+        Resource: !GetAtt createOrderRecordThree.Arn
+        Next: notifyStore
+        Retry: ${self:custom.retryStep}
+        Catch: ${self:custom.catchStep}
+      notifyStore:
+        Type: Task
+        Resource: !GetAtt notifyStoreThree.Arn
+        Next: pendingPick
+        Retry: ${self:custom.retryStep}
+        Catch: ${self:custom.catchStep}
+      pendingPick:
+        Type: Task
+        Resource: arn:${AWS::Partition}:states:::lambda:invoke.waitForTaskToken
+        Parameters:
+          FunctionName: !GetAtt pendingInput.Arn
+          Payload:
+          - taskToken.$: $$.Task.Token
+          - order.$: "$"
+        Retry: ${self:custom.retryStep}
+        Catch: ${self:custom.catchStep}
+        Next: emailCustomer
+      emailCustomer:
+        Type: Task
+        Resource: !GetAtt emailCustomerThree.Arn
+        Retry: ${self:custom.retryStep}
+        Catch: ${self:custom.catchStep}
+        End: true
+      SendErrorQueueState:
+        Type: Task
+        Resource: !GetAtt sendToErrorQueue.Arn
+        Retry: ${self:custom.retryStep}
+        Next: FinalErrorState
+      FinalErrorState:
+        Type: Fail
+
+
+
+
+

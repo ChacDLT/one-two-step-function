@@ -50,6 +50,8 @@ const getStepFunctionArn = key => {
       return 'arn:aws:states:us-west-2:037364081076:stateMachine:firstdevStateMachine';
     case 'two':
       return 'arn:aws:states:us-west-2:037364081076:stateMachine:seconddevStateMachine';
+    case 'three':
+      return 'arn:aws:states:us-west-2:037364081076:stateMachine:thirddevStateMachine';
     default:
       console.log('Cant find arn');
   }

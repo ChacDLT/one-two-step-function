@@ -1,6 +1,19 @@
 service:
   name: one-two-step-function
 
+custom:
+  retryStep:
+    - ErrorEquals:
+      - States.ALL
+      IntervalSeconds: 5
+      MaxAttempts: 2
+      BackoffRate: 2
+  catchStep:
+    - ErrorEquals:
+      - States.ALL
+      ResultPath: "$.errorInfo"
+      Next: SendErrorQueueState
+
 provider:
   name: aws
   runtime: nodejs14.x

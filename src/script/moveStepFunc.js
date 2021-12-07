@@ -35,7 +35,7 @@ const init = async () => {
     .help()
     .alias('help', 'h');
 
-  const { region, env, id, profile, message } = argv;
+  const { region, id, profile } = argv;
 
   if (profile) {
     process.env.AWS_PROFILE = profile;
