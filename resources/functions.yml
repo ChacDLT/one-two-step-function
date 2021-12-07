@@ -8,9 +8,20 @@ createInvoice:
 pendingInput:
   handler: src/stepFunctions/pendingInput.handler
 
-
 emailCustomer:
   handler: src/stepFunctions/emailCustomer.handler
+
+
+##
+
+createInvoiceTwo:
+  handler: src/stepFunctionsTwo/createInvoiceTwo.handler
+createOrderRecordTwo:
+  handler: src/stepFunctionsTwo/createOrderRecordTwo.handler
+notifyStoreTwo:
+  handler: src/stepFunctionsTwo/notifyStoreTwo.handler
+emailCustomerTwo:
+  handler: src/stepFunctionsTwo/emailCustomerTwo.handler
 
 
 

@@ -2,7 +2,7 @@ firstStateMachine:
   name: first${self:provider.stage}StateMachine
   role: !GetAtt StateMachineRole.Arn
   definition:
-    Comment: "Online Purchasing State Machine"
+    Comment: "First iteration"
     StartAt: createInvoice
     States:
       createInvoice:
@@ -30,10 +30,31 @@ secondStateMachine:
   name: second${self:provider.stage}StateMachine
   role: !GetAtt StateMachineRole.Arn
   definition:
-    Comment: "Online Purchasing State Machine"
+    Comment: "First iteration"
     StartAt: createInvoice
     States:
       createInvoice:
         Type: Task
-        Resource: !GetAtt createInvoice.Arn
+        Resource: !GetAtt createInvoiceTwo.Arn
+        Next: createOrderRecord
+      createOrderRecord:
+        Type: Task
+        Resource: !GetAtt createOrderRecordTwo.Arn
+        Next: notifyStore
+      notifyStore:
+        Type: Task
+        Resource: !GetAtt notifyStoreTwo.Arn
+        Next: pendingPick
+      pendingPick:
+        Type: Task
+        Resource: arn:${AWS::Partition}:states:::lambda:invoke.waitForTaskToken
+        Parameters:
+          FunctionName: !GetAtt pendingInput.Arn
+          Payload:
+          - taskToken.$: $$.Task.Token
+          - order.$: "$"
+        Next: emailCustomer
+      emailCustomer:
+        Type: Task
+        Resource: !GetAtt emailCustomerTwo.Arn
         End: true
