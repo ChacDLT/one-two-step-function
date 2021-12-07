@@ -9,6 +9,18 @@ provider:
   stackName: ${self:service.name}-${opt:stage, self:custom.default_stage}
   versionFunctions: false
 
+  environment:
+    region: ${self:provider.region}
+    stage: ${self:provider.stage}
+    stackName: ${self:service.name}-${opt:stage, 'dev'}
+    ORDER_TABLE_NAME: order-${self:provider.stage}-table
+
+  iamRoleStatements:
+    - Effect: 'Allow'
+      Action: "*"
+      Resource: "*"
+
+
 functions:
   - ${file(resources/functions.yml)}
 

@@ -1,4 +1,16 @@
 Resources:
+  OrderTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: order-${self:provider.stage}-table
+      KeySchema:
+        - AttributeName: id
+          KeyType: HASH
+      AttributeDefinitions:
+        - AttributeName: id
+          AttributeType: S
+      BillingMode: PAY_PER_REQUEST
+
   StateMachineRole:
     Type: AWS::IAM::Role
     Properties:

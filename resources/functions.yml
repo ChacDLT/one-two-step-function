@@ -1,6 +1,14 @@
-createInvoice:
-  handler: src/functions/createInvoice.handler
+
+startStepFunc:
+  handler: src/functions/startStepFunc.handler
+
+moveStepFunc:
+  handler: src/functions/moveStepFunc.handler
   timeout: 60
+
+createInvoice:
+  handler: src/stepFunctions/createInvoice.handler
+
 
 # createOrderRecord:
 #   handler: src/functions/stepFunctions/createOrderRecord.handler

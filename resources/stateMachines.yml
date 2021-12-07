@@ -10,14 +10,14 @@ firstStateMachine:
         Resource: !GetAtt createInvoice.Arn
         End: true
 
-# secondStatueMachine:
-#   name: second${self:provider.stage}StateMachine
-#   role: !GetAtt StateMachineRole.Arn
-#   definition:
-#     Comment: "Online Purchasing State Machine"
-#     StartAt: createInvoice
-#     States:
-#       createInvoice:
-#         Type: Task
-#         Resource: !GetAtt createInvoice.Arn
-#         End: true
+secondStateMachine:
+  name: second${self:provider.stage}StateMachine
+  role: !GetAtt StateMachineRole.Arn
+  definition:
+    Comment: "Online Purchasing State Machine"
+    StartAt: createInvoice
+    States:
+      createInvoice:
+        Type: Task
+        Resource: !GetAtt createInvoice.Arn
+        End: true
