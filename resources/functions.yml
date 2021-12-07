@@ -1,6 +1,8 @@
-#first
 startStepFunc:
   handler: src/functions/startStepFunc.handler
+
+
+## first
 createInvoice:
   handler: src/stepFunctions/createInvoice.handler
 pendingInput:
